@@ -55,8 +55,8 @@ class Callback(webapp2.RequestHandler):
         user_id = self.request.get('state')
 
         spotify_credentials_key = datastore_types.Key.from_path(
-            kind=SPOTIFY_CREDENTIALS_DATASTORE_KIND,
-            id_or_name='default')
+            SPOTIFY_CREDENTIALS_DATASTORE_KIND,
+            'default')
         spotify_credentials_entity = datastore.Get(spotify_credentials_key)
 
         req_data = {
@@ -74,7 +74,7 @@ class Callback(webapp2.RequestHandler):
         entity.update({'accessToken': resp['access_token']})
         datastore.Put(entity)
 
-        self.response.write('OK')
+        self.response.write('<html><script>close();</script></html>')
 
 
 app = webapp2.WSGIApplication([
