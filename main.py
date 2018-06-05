@@ -35,6 +35,7 @@ CALLBACK_URL = 'https://newagent-6f7b4.appspot.com/callback'
 SCOPE = 'user-modify-playback-state'
 TOKEN_URL = 'https://accounts.spotify.com/api/token'
 ACCESS_TOKENS_DATASTORE_KIND = 'spotifyAccessTokens'
+REFRESH_TOKENS_DATASTORE_KIND = 'spotifyRefreshTokens'
 SPOTIFY_CREDENTIALS_DATASTORE_KIND = 'spotifyCredentials'
 PROJECT_ID = 'newagent-6f7b4'
 
@@ -72,6 +73,10 @@ class Callback(webapp2.RequestHandler):
 
         entity = datastore.Entity(kind=ACCESS_TOKENS_DATASTORE_KIND, name=user_id)
         entity.update({'accessToken': resp['access_token']})
+        datastore.Put(entity)
+
+        entity = datastore.Entity(kind=REFRESH_TOKENS_DATASTORE_KIND, name=user_id)
+        entity.update({'refreshToken': resp['refresh_token']})
         datastore.Put(entity)
 
         self.response.write('<html><script>close();</script></html>')
