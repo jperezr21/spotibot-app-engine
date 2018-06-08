@@ -32,7 +32,7 @@ httplib.HTTPResponse.read = patch_http_response_read(httplib.HTTPResponse.read)
 
 SPOTIFY_CLIENT_ID = 'f4b98baded8941af9e88ef500ef4af0b'
 CALLBACK_URL = 'https://newagent-6f7b4.appspot.com/callback'
-SCOPE = 'user-modify-playback-state'
+SCOPE = 'user-modify-playback-state%20user-top-read'
 TOKEN_URL = 'https://accounts.spotify.com/api/token'
 ACCESS_TOKENS_DATASTORE_KIND = 'spotifyAccessTokens'
 REFRESH_TOKENS_DATASTORE_KIND = 'spotifyRefreshTokens'
